@@ -19,3 +19,18 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: my_database
+
+  jenkins:
+    image: jenkins/jenkins:lts
+    ports:
+      - "8090:8080"
+    volumes:
+      - "jenkins_home:/var/jenkins_home"
+    networks:
+      - jenkins
+
+volumes:
+  jenkins_home:
+
+networks:
+  jenkins:

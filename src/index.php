@@ -51,9 +51,9 @@ $result = $conn->query("SELECT * FROM tasks");
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-    <div class="container mt-5">
-        <h1 class="text-center">Administrador de Tareas</h1>
-
+    <div class="container-fluid mt-2 p-3">
+        <h2 class="text-center mb-3">Tareas</h2>
+        <p class="text-center mb-3">By: Geeney Delgado</p>
         <!-- Formulario para añadir tareas -->
         <form method="POST" action="index.php" class="mb-4">
             <div class="input-group">
@@ -65,24 +65,26 @@ $result = $conn->query("SELECT * FROM tasks");
         </form>
 
         <!-- Lista de tareas -->
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th scope="col">Tarea</th>
-                    <th scope="col">Acción</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php while($row = $result->fetch_assoc()): ?>
-                <tr>
-                    <td><?php echo htmlspecialchars($row['task']); ?></td>
-                    <td>
-                        <a href="index.php?delete=<?php echo $row['id']; ?>" class="btn btn-danger btn-sm">Eliminar</a>
-                    </td>
-                </tr>
-                <?php endwhile; ?>
-            </tbody>
-        </table>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Tarea</th>
+                        <th scope="col">Acción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php while($row = $result->fetch_assoc()): ?>
+                    <tr>
+                        <td><?php echo htmlspecialchars($row['task']); ?></td>
+                        <td>
+                            <a href="index.php?delete=<?php echo $row['id']; ?>" class="btn btn-danger btn-sm">Eliminar</a>
+                        </td>
+                    </tr>
+                    <?php endwhile; ?>
+                </tbody>
+            </table>
+        </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
