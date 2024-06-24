@@ -57,7 +57,7 @@ $result = $conn->query("SELECT * FROM tasks");
         <!-- Formulario para añadir tareas -->
         <form method="POST" action="index.php" class="mb-4">
             <div class="input-group">
-                <input type="text" name="task" class="form-control" placeholder="Añadir una nueva tarea" required>
+                <input type="text" name="task" class="form-control" placeholder="Nueva tarea" required>
                 <div class="input-group-append">
                     <button class="btn btn-primary" type="submit">Añadir Tarea</button>
                 </div>
