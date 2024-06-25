@@ -1,14 +1,13 @@
 pipeline {
-    agent any
+  agent any
 
-    stages {
-        stage('Build') {
-            steps {
-                checkout scm
-                dockerBuild('tasks-integracion-continua-web')
-                sh 'docker-compose up -d'
-                sh 'docker exec -it web phpunit src/tests'
-            }
-        }
+  stages {
+    stage('Build') {
+      steps {
+        checkout scm
+        sh 'docker build -t tasks-integracion-continua-web .'
+        sh 'docker-compose up -d'
+      }
     }
+  }
 }
