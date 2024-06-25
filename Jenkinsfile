@@ -1,7 +1,7 @@
 pipeline {
     agent {
         docker {
-            image 'docker:stable'
+            image 'docker:stable-dind'
             args '-v /var/run/docker.sock:/var/run/docker.sock'
         }
     }
@@ -9,8 +9,11 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                    // Construir la imagen de Docker
-                    sh 'docker-compose build'
+                    // Asegúrate de instalar docker-compose si no está incluido en la imagen
+                    sh '''
+                    apk add --no-cache docker-compose
+                    docker-compose build
+                    '''
                 }
             }
         }
