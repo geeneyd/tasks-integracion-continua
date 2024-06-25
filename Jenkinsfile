@@ -9,7 +9,6 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                    // Asegúrate de instalar docker-compose si no está incluido en la imagen
                     sh '''
                     apk add --no-cache docker-compose
                     docker-compose build
@@ -28,7 +27,6 @@ pipeline {
         stage('Run Tests') {
             steps {
                 script {
-                    // Esperar a que los contenedores estén listos
                     sleep 20
                     
                     // Verificar si el servicio web está en funcionamiento
