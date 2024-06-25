@@ -1,9 +1,13 @@
 pipeline {
-    agent { docker { image 'php:8.3.8-alpine3.20' } }
+    agent any
+
     stages {
-        stage('build') {
+        stage('Build') {
             steps {
-                sh 'php --version'
+                checkout scm
+                dockerBuild('tasks-integracion-continua-web')
+                sh 'docker-compose up -d'
+                sh 'docker exec -it web phpunit src/tests'
             }
         }
     }
